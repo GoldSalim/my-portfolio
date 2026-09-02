@@ -155,48 +155,47 @@ export default function AboutPage() {
           HERO SECTION
       ========================================= */}
       <section className="relative min-h-[110vh] w-full flex flex-col justify-center items-center bg-[#F0EEE6] overflow-hidden">
-        <div className="relative w-full flex justify-between items-center px-[2vw] z-10 pointer-events-none">
-          
-          <h1 
-            className="text-[20vw] leading-none m-0 p-0 uppercase tracking-[-0.03em] text-[#1C24B6] select-none"
-            style={{ 
-              fontFamily: 'Impact, sans-serif',
-              transform: 'scaleY(1.15)',
-              transformOrigin: 'center left' 
-            }}
-          >
-            GOLD
-          </h1>
+  <div className="relative w-full flex justify-between items-center px-[2vw] z-10 pointer-events-none">
+    
+    <h1 
+      className="text-[20vw] leading-none m-0 p-0 uppercase tracking-[-0.03em] text-[#1C24B6] select-none"
+      style={{ 
+        fontFamily: 'Impact, sans-serif',
+        transform: 'scaleY(1.15)',
+        transformOrigin: 'center left' 
+      }}
+    >
+      GOLD
+    </h1>
 
-          <div className="relative">
-            <h1 
-              className="text-[20vw] leading-none m-0 p-0 uppercase tracking-[-0.03em] text-[#1C24B6] select-none"
-              style={{ 
-                fontFamily: 'Impact, sans-serif',
-                transform: 'scaleY(1.15)',
-                transformOrigin: 'center right' 
-              }}
-            >
-              SALIM
-            </h1>
-            
-            <div className="absolute top-[85%] right-[-5%] w-[70%] z-40 opacity-90">
-              <svg viewBox="0 0 350 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto text-[#1C24B6]">
-                <path d="M 80 30 C 10 0, -30 80, 40 120 C 110 160, 170 60, 120 40 C 70 20, 30 70, 60 110 C 90 150, 130 90, 150 80 C 170 70, 180 70, 180 85 C 180 100, 160 110, 170 110 C 190 110, 280 80, 320 70" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M 335 78 L 342 85" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
-              </svg>
-            </div>
-          </div>
-        </div>
+    <div className="relative">
+      <h1 
+        className="text-[20vw] leading-none m-0 p-0 uppercase tracking-[-0.03em] text-[#1C24B6] select-none"
+        style={{ 
+          fontFamily: 'Impact, sans-serif',
+          transform: 'scaleY(1.15)',
+          transformOrigin: 'center right' 
+        }}
+      >
+        SALIM
+      </h1>
+      
+      <div className="absolute top-[85%] right-[-5%] w-[70%] z-40 opacity-90">
+        <svg viewBox="0 0 350 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto text-[#1C24B6]">
+          <path d="M 80 30 C 10 0, -30 80, 40 120 C 110 160, 170 60, 120 40 C 70 20, 30 70, 60 110 C 90 150, 130 90, 150 80 C 170 70, 180 70, 180 85 C 180 100, 160 110, 170 110 C 190 110, 280 80, 320 70" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M 335 78 L 342 85" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+        </svg>
+      </div>
+    </div>
+  </div>
 
-        {/* Simple Static Image */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 aspect-[3/4] w-[15vw] min-w-[170px] pointer-events-none">
-          <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gray-300 border-[4px] border-[#F0EEE6]">
-            <Image src="/handlap.avif" alt="Portrait" fill className="object-cover grayscale" priority />
-          </div>
-        </div>
-      </section>
-
+  {/* Profile Image - Updated to salim.jpeg */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 aspect-[3/4] w-[15vw] min-w-[170px] pointer-events-none">
+    <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gray-300 border-[4px] border-[#F0EEE6]">
+      <Image src="/salim.jpeg" alt="Portrait" fill className="object-cover grayscale" priority />
+    </div>
+  </div>
+</section>
       {/* =========================================
           BLUE TEXT SECTION - PROFESSIONAL SUMMARY
       ========================================= */}
