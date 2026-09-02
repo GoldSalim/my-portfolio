@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "npm approve-scripts --allow-scripts-pending"
   },
+  "allowScripts": true,
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
@@ -26,5 +28,8 @@
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "sharp": "0.33.5"
   }
 }
