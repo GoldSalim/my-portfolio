@@ -4,6 +4,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+// =========================================
+// DATA
+// =========================================
+const paragraph1 = [
+  "FROM LAGOS TO THE WORLD,",
+  "GOLD SALIM OPEYEMI IS A FRONTEND DEVELOPER",
+  "KNOWN FOR BUILDING RESPONSIVE, HIGH-PERFORMANCE",
+  "WEB APPLICATIONS WITH CLEAN, MODERN CODE.",
+  "A FRONTEND DEVELOPER FOCUSED ON CREATING SEAMLESS,"
+];
+
+const paragraph2 = [
+  "USER-FRIENDLY DIGITAL EXPERIENCES.",
+  "HIS WORK BLENDS MINIMAL AESTHETICS WITH",
+  "STRONG FUNCTIONALITY AND STRUCTURED LAYOUTS.",
+  "HE SPECIALIZES IN REACT, NEXT.JS, AND UI/UX",
+  "ALWAYS EXPLORING NEW WAYS TO COMBINE CREATIVITY WITH TECHNOLOGY."
+];
+
 // Add interface for nav items
 interface NavItem {
   name: string;
@@ -179,7 +198,7 @@ export default function AboutPage() {
       </section>
 
       {/* =========================================
-          BLUE TEXT SECTION - PROFESSIONAL SUMMARY (NO ANIMATIONS)
+          BLUE TEXT SECTION - PROFESSIONAL SUMMARY
       ========================================= */}
       <section className="relative w-full bg-[#121ABC] text-[#EBEAE5] py-32 px-[6vw] flex flex-col gap-16 md:gap-24 items-center justify-center text-center overflow-hidden">
         
@@ -187,7 +206,7 @@ export default function AboutPage() {
           {paragraph1.map((line, i) => (
             <p 
               key={i}
-              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter transition-all duration-500 hover:scale-105"
+              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter transition-all duration-300 hover:opacity-80"
               style={{ fontFamily: 'Impact, sans-serif' }}
             >
               {line}
@@ -199,7 +218,7 @@ export default function AboutPage() {
           {paragraph2.map((line, i) => (
             <p 
               key={i}
-              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter transition-all duration-500 hover:scale-105"
+              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter transition-all duration-300 hover:opacity-80"
               style={{ fontFamily: 'Impact, sans-serif' }}
             >
               {line}
