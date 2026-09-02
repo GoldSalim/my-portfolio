@@ -68,10 +68,24 @@ const pageVariants = {
   },
 };
 
+// Add interface for nav items
+interface NavItem {
+  name: string;
+  path: string;
+}
+
+// Add interface for slot positions
+interface SlotPosition {
+  y: string;
+  scale: number;
+  rotate: number;
+  zIndex: number;
+}
+
 export default function AboutPage() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState(0);
-  const [isNavigating, setIsNavigating] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [step, setStep] = useState<number>(0);
+  const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const router = useRouter();
 
   // Scroll animation setup
@@ -98,7 +112,7 @@ export default function AboutPage() {
   }, []);
 
   // Tighter vertical positions so it doesn't move beyond the text height
-  const slots = [
+  const slots: SlotPosition[] = [
     { y: "-35%", scale: 0.75, rotate: 8, zIndex: 10 },  // Slot 0: Top / Back
     { y: "0%", scale: 0.85, rotate: -4, zIndex: 20 },   // Slot 1: Middle
     { y: "35%", scale: 0.95, rotate: 6, zIndex: 30 },   // Slot 2: Bottom / Front
@@ -111,15 +125,15 @@ export default function AboutPage() {
   };
 
   // Navigation items configuration
-  const navItems = [
+  const navItems: NavItem[] = [
     { name: 'HOME', path: '/' },
     { name: 'ABOUT', path: '/about' },
     { name: 'WORK', path: '/work' },
     { name: "LET'S TALK", path: '/contact' },
   ];
 
-  // Handle navigation with smooth transition
-  const handleNavigation = (path) => {
+  // Handle navigation with smooth transition - FIXED: added type annotation
+  const handleNavigation = (path: string): void => {
     if (path) {
       setIsNavigating(true);
       setIsOpen(false);
