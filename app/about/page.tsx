@@ -41,7 +41,7 @@ const lineVariants = {
   },
 };
 
-// Page transition variants
+// Page transition variants - FIXED: removed the ease array
 const pageVariants = {
   initial: {
     opacity: 0,
@@ -54,7 +54,7 @@ const pageVariants = {
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: "easeInOut", // Changed from array to string
     },
   },
   exit: {
@@ -63,7 +63,7 @@ const pageVariants = {
     scale: 0.98,
     transition: {
       duration: 0.4,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: "easeInOut", // Changed from array to string
     },
   },
 };
@@ -121,7 +121,7 @@ export default function AboutPage() {
   // Cinematic easing for the slide-and-snap motion
   const carouselTransition = { 
     duration: 1, 
-    ease: [0.77, 0, 0.175, 1] 
+    ease: [0.77, 0, 0.175, 1] as const // Added 'as const' for proper typing
   };
 
   // Navigation items configuration
@@ -132,7 +132,7 @@ export default function AboutPage() {
     { name: "LET'S TALK", path: '/contact' },
   ];
 
-  // Handle navigation with smooth transition - FIXED: added type annotation
+  // Handle navigation with smooth transition
   const handleNavigation = (path: string): void => {
     if (path) {
       setIsNavigating(true);
