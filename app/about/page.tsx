@@ -2,44 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-
-// =========================================
-// ANIMATION VARIANTS & DATA
-// =========================================
-const paragraph1 = [
-  "FROM LAGOS TO THE WORLD,",
-  "GOLD SALIM OPEYEMI IS A FRONTEND DEVELOPER",
-  "KNOWN FOR BUILDING RESPONSIVE, HIGH-PERFORMANCE",
-  "WEB APPLICATIONS WITH CLEAN, MODERN CODE.",
-  "A FRONTEND DEVELOPER FOCUSED ON CREATING SEAMLESS,"
-];
-
-const paragraph2 = [
-  "USER-FRIENDLY DIGITAL EXPERIENCES.",
-  "HIS WORK BLENDS MINIMAL AESTHETICS WITH",
-  "STRONG FUNCTIONALITY AND STRUCTURED LAYOUTS.",
-  "HE SPECIALIZES IN REACT, NEXT.JS, AND UI/UX",
-  "ALWAYS EXPLORING NEW WAYS TO COMBINE CREATIVITY WITH TECHNOLOGY."
-];
-
-const containerVariants = {
-  hidden: { opacity: 1 }, 
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const lineVariants = {
-  hidden: { opacity: 0.15, y: 20 }, 
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" } 
-  },
-};
 
 // Add interface for nav items
 interface NavItem {
@@ -51,19 +14,6 @@ export default function AboutPage() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const router = useRouter();
-
-  // Scroll animation setup
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const borderRadius = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    ["30%", "0%", "30%"]
-  );
 
   // Navigation items configuration
   const navItems: NavItem[] = [
@@ -183,12 +133,9 @@ export default function AboutPage() {
       </header>
 
       {/* =========================================
-          HERO SECTION (SPACING & CAROUSEL)
+          HERO SECTION
       ========================================= */}
-      <section 
-        ref={containerRef} 
-        className="relative min-h-[110vh] w-full flex flex-col justify-center items-center bg-[#F0EEE6] overflow-hidden"
-      >
+      <section className="relative min-h-[110vh] w-full flex flex-col justify-center items-center bg-[#F0EEE6] overflow-hidden">
         <div className="relative w-full flex justify-between items-center px-[2vw] z-10 pointer-events-none">
           
           <h1 
@@ -223,7 +170,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Simple Static Images - REMOVED ALL CAROUSEL ANIMATIONS */}
+        {/* Simple Static Image */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 aspect-[3/4] w-[15vw] min-w-[170px] pointer-events-none">
           <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gray-300 border-[4px] border-[#F0EEE6]">
             <Image src="/handlap.avif" alt="Portrait" fill className="object-cover grayscale" priority />
@@ -232,47 +179,33 @@ export default function AboutPage() {
       </section>
 
       {/* =========================================
-          BLUE TEXT SECTION - PROFESSIONAL SUMMARY
+          BLUE TEXT SECTION - PROFESSIONAL SUMMARY (NO ANIMATIONS)
       ========================================= */}
       <section className="relative w-full bg-[#121ABC] text-[#EBEAE5] py-32 px-[6vw] flex flex-col gap-16 md:gap-24 items-center justify-center text-center overflow-hidden">
         
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-full max-w-[90vw]"
-        >
+        <div className="w-full max-w-[90vw]">
           {paragraph1.map((line, i) => (
-            <motion.p 
+            <p 
               key={i}
-              variants={lineVariants}
-              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter"
+              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter transition-all duration-500 hover:scale-105"
               style={{ fontFamily: 'Impact, sans-serif' }}
             >
               {line}
-            </motion.p>
+            </p>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-full max-w-[90vw]"
-        >
+        <div className="w-full max-w-[90vw]">
           {paragraph2.map((line, i) => (
-            <motion.p 
+            <p 
               key={i}
-              variants={lineVariants}
-              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter"
+              className="text-[6vw] md:text-[5vw] lg:text-[4.5vw] leading-[1.05] font-black uppercase tracking-tighter transition-all duration-500 hover:scale-105"
               style={{ fontFamily: 'Impact, sans-serif' }}
             >
               {line}
-            </motion.p>
+            </p>
           ))}
-        </motion.div>
+        </div>
       </section>
 
       {/* =========================================
