@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+interface NavItem {
+  name: string;
+  path: string;
+}
+
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  
-  // State to control the curve of the divider. 100 = fully curved, 0 = straight.
   const [curve, setCurve] = useState(100);
 
   useEffect(() => {
@@ -23,8 +26,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Navigation items with proper paths
-  const navItems = [
+  const navItems: NavItem[] = [
     { name: 'HOME', path: '/' },
     { name: 'ABOUT', path: '/about' },
     { name: 'WORK', path: '/work' },
@@ -124,193 +126,196 @@ export default function Home() {
       {/* =========================================
           HERO SECTION (100vh)
       ========================================= */}
-     <section className="relative w-full min-h-[90vh] md:min-h-screen bg-[#f5f4ef] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 overflow-hidden text-[#141b9c] flex flex-col justify-between my-4 border border-[#141b9c]/10">
+      <section className="relative w-full min-h-[90vh] md:min-h-screen bg-[#f5f4ef] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 overflow-hidden text-[#141b9c] flex flex-col justify-between my-4 border border-[#141b9c]/10">
   
-  {/* Central Hero Area (Typography + Rotated Center Image) */}
-  <div className="relative w-full flex-1 flex items-center justify-center min-h-[380px] md:min-h-[480px]">
-    
-    {/* Giant Background Typography */}
-    <div className="w-full flex justify-between items-center pointer-events-none select-none z-0">
-      <h1 
-        className="text-[26vw] md:text-[20vw] leading-none m-0 p-0 uppercase text-[#141b9c] tracking-normal"
-        style={{ 
-          fontFamily: 'Impact, sans-serif',
-          transform: 'scaleY(1.25)',
-          transformOrigin: 'bottom'
-        }}
-      >
-        GOLD
-      </h1>
-      <h1 
-        className="text-[26vw] md:text-[20vw] leading-none m-0 p-0 uppercase text-[#141b9c] tracking-normal"
-        style={{ 
-          fontFamily: 'Impact, sans-serif',
-          transform: 'scaleY(1.25)',
-          transformOrigin: 'bottom'
-        }}
-      >
-        SALIM
-      </h1>
-    </div>
+        {/* Central Hero Area (Typography + Rotated Center Image) */}
+        <div className="relative w-full flex-1 flex items-center justify-center min-h-[380px] md:min-h-[480px]">
+          
+          {/* Giant Background Typography */}
+          <div className="w-full flex justify-between items-center pointer-events-none select-none z-0">
+            <h1 
+              className="text-[26vw] md:text-[20vw] leading-none m-0 p-0 uppercase text-[#141b9c] tracking-normal"
+              style={{ 
+                fontFamily: 'Impact, sans-serif',
+                transform: 'scaleY(1.25)',
+                transformOrigin: 'bottom'
+              }}
+            >
+              GOLD
+            </h1>
+            <h1 
+              className="text-[26vw] md:text-[20vw] leading-none m-0 p-0 uppercase text-[#141b9c] tracking-normal"
+              style={{ 
+                fontFamily: 'Impact, sans-serif',
+                transform: 'scaleY(1.25)',
+                transformOrigin: 'bottom'
+              }}
+            >
+              SALIM
+            </h1>
+          </div>
 
-    {/* Central Portrait Image */}
-    <div className="absolute top-54 left-152 -translate-x-1/2 -translate-y-1/2 z-10 w-[14vw] min-w-[180px] max-w-[280px] aspect-[1/1.1] -rotate-[-12deg] rounded-[1.2rem] md:rounded-[1.5rem] overflow-hidden shadow-2xl bg-gray-200 ">
-      <Image 
-        src="/salim.jpeg" 
-        alt="Gold Salim Portrait" 
-        fill
-        className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
-        priority
-        sizes="(max-width: 768px) 50vw, 22vw"
-      />
-    </div>
+          {/* Central Portrait Image */}
+          <div className="absolute top-54 left-152 -translate-x-1/2 -translate-y-1/2 z-10 w-[14vw] min-w-[180px] max-w-[280px] aspect-[1/1.1] -rotate-[-12deg] rounded-[1.2rem] md:rounded-[1.5rem] overflow-hidden shadow-2xl bg-gray-200">
+            <Image 
+              src="/salim.jpeg" 
+              alt="Gold Salim Portrait" 
+              fill
+              className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              priority
+              sizes="(max-width: 768px) 50vw, 22vw"
+            />
+          </div>
 
-  </div>
+        </div>
 
-  {/* Card Bottom Info (Bounded inside the card container) */}
-  <div className="relative z-20 w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-8 pt-6">
-    
-    {/* Bottom Left Inside Card */}
-<div className="flex flex-col gap-5 text-[13px] md:text-[14px] font-bold tracking-tight leading-[1.4] text-[#141b9c]">
-  <div>
-    <p>FRONTEND DEVELOPER</p>
-    <p>BUILDING RESPONSIVE SYSTEMS</p>
-    <p>FOR MODERN BRANDS</p>
-  </div>
-  <div className="relative">
-    <p>LOCATION: LAGOS, NG</p>
-    <p className="flex items-center flex-wrap gap-1">
-      AVAILABLE FOR FREELANCE:&nbsp;
-      <a 
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=goldsalim12@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:opacity-70 transition-opacity duration-300 underline underline-offset-4 decoration-1 pointer-events-auto cursor-pointer"
-      >
-        goldsalim12@gmail.com
-      </a>
-    </p>
-    
-    {/* Hand-drawn Annotation: (contact me) */}
-    <div className="absolute -top-7 left-[260px] md:left-[280px] flex items-center gap-1.5 text-[18px] font-medium opacity-90 pointer-events-none" style={{ fontFamily: 'Caveat, cursive', fontStyle: 'italic' }}>
-      <svg width="40" height="40" viewBox="0 0 50 50" fill="none" className="translate-y-3 -translate-x-1">
-        <path d="M 45 10 Q 25 5 10 35" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M 5 25 L 10 35 L 20 32" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span className="whitespace-nowrap -translate-y-3">(contact me)</span>
-    </div>
-  </div>
-</div>
-    {/* Bottom Right Inside Card */}
-    <div className="flex flex-col items-start md:items-end text-[13px] md:text-[14px] font-bold tracking-tight leading-[1.4] text-[#141b9c] text-left md:text-right pointer-events-auto">
-      <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60">REACT.JS</p>
-      <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60">NEXT.JS</p>
-      <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60">TYPESCRIPT</p>
-      <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60 relative">
-        TAILWIND CSS
-        
-        {/* Hand-drawn Annotation: (hover us) */}
-        <span className="absolute top-[-4px] right-[170px] md:right-[190px] hidden md:flex items-center gap-1.5 text-[18px] font-medium opacity-90 pointer-events-none w-max" style={{ fontFamily: 'Caveat, cursive', fontStyle: 'italic' }}>
-          <span className="whitespace-nowrap translate-y-4">(hover us)</span>
-          <svg width="40" height="40" viewBox="0 0 50 50" fill="none" className="translate-x-0 -translate-y-1">
-            <path d="M 10 45 Q 35 45 45 10" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M 30 15 L 45 10 L 43 25" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
-      </p>
-    </div>
+        {/* Card Bottom Info (Bounded inside the card container) */}
+        <div className="relative z-20 w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-8 pt-6">
+          
+          {/* Bottom Left Inside Card */}
+          <div className="flex flex-col gap-5 text-[13px] md:text-[14px] font-bold tracking-tight leading-[1.4] text-[#141b9c]">
+            <div>
+              <p>FRONTEND DEVELOPER</p>
+              <p>BUILDING RESPONSIVE SYSTEMS</p>
+              <p>FOR MODERN BRANDS</p>
+            </div>
+            <div className="relative">
+              <p>LOCATION: LAGOS, NG</p>
+              <p className="flex items-center flex-wrap gap-1">
+                AVAILABLE FOR FREELANCE:&nbsp;
+                <a 
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=goldsalim12@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-70 transition-opacity duration-300 underline underline-offset-4 decoration-1 pointer-events-auto cursor-pointer"
+                >
+                  goldsalim12@gmail.com
+                </a>
+              </p>
+              
+              {/* Hand-drawn Annotation: (contact me) */}
+              <div className="absolute -top-7 left-[260px] md:left-[280px] flex items-center gap-1.5 text-[18px] font-medium opacity-90 pointer-events-none" style={{ fontFamily: 'Caveat, cursive', fontStyle: 'italic' }}>
+                <svg width="40" height="40" viewBox="0 0 50 50" fill="none" className="translate-y-3 -translate-x-1">
+                  <path d="M 45 10 Q 25 5 10 35" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                  <path d="M 5 25 L 10 35 L 20 32" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className="whitespace-nowrap -translate-y-3">(contact me)</span>
+              </div>
+            </div>
+          </div>
 
-  </div>
-</section>
+          {/* Bottom Right Inside Card */}
+          <div className="flex flex-col items-start md:items-end text-[13px] md:text-[14px] font-bold tracking-tight leading-[1.4] text-[#141b9c] text-left md:text-right pointer-events-auto">
+            <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60">REACT.JS</p>
+            <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60">NEXT.JS</p>
+            <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60">TYPESCRIPT</p>
+            <p className="cursor-pointer transition-all duration-300 hover:-translate-x-2 hover:opacity-60 relative">
+              TAILWIND CSS
+              
+              {/* Hand-drawn Annotation: (hover us) */}
+              <span className="absolute top-[-4px] right-[170px] md:right-[190px] hidden md:flex items-center gap-1.5 text-[18px] font-medium opacity-90 pointer-events-none w-max" style={{ fontFamily: 'Caveat, cursive', fontStyle: 'italic' }}>
+                <span className="whitespace-nowrap translate-y-4">(hover us)</span>
+                <svg width="40" height="40" viewBox="0 0 50 50" fill="none" className="translate-x-0 -translate-y-1">
+                  <path d="M 10 45 Q 35 45 45 10" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                  <path d="M 30 15 L 45 10 L 43 25" stroke="#141b9c" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </p>
+          </div>
+
+        </div>
+      </section>
 
       {/* =========================================
           ABOUT SECTION
       ========================================= */}
-    <section className="relative w-full bg-[#f5f4ef] px-6 py-20 lg:px-16 lg:py-32 overflow-hidden z-10 text-[#141b9c]">
-  <div className="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-12 items-center">
-    
-    {/* Left Side: Typography & Signature */}
-    <div className="md:col-span-5 flex flex-col gap-6 lg:pr-8">
-      <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tighter origin-left" style={{ transform: 'scaleY(1.2)' }}>
-        HI! I AM GOLD SALIM
-      </h2>
-      
-      <p className="text-[14px] lg:text-[15px] font-bold uppercase tracking-tight leading-[1.5] mt-4">
-        FROM LAGOS TO THE WORLD, GOLD SALIM OPEYEMI IS A FRONTEND DEVELOPER KNOWN FOR BUILDING RESPONSIVE, HIGH-PERFORMANCE WEB APPLICATIONS.
-      </p>
-      
-      <p className="text-[14px] lg:text-[15px] font-bold uppercase tracking-tight leading-[1.5]">
-        A RESULTS-DRIVEN FRONTEND DEVELOPER WITH 3+ YEARS OF EXPERIENCE BUILDING RESPONSIVE, HIGH-PERFORMANCE WEB APPLICATIONS USING HTML5, CSS3, JAVASCRIPT, TYPESCRIPT, REACT.JS, NEXT.JS, TAILWIND CSS, AND REACT NATIVE. PASSIONATE ABOUT WRITING CLEAN, MAINTAINABLE CODE AND SOLVING COMPLEX PROBLEMS.
-      </p>
+      <section className="relative w-full bg-[#f5f4ef] px-6 py-20 lg:px-16 lg:py-32 overflow-hidden z-10 text-[#141b9c]">
+        <div className="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-12 items-center">
+          
+          {/* Left Side: Typography & Signature */}
+          <div className="md:col-span-5 flex flex-col gap-6 lg:pr-8">
+            <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tighter origin-left" style={{ transform: 'scaleY(1.2)' }}>
+              HI! I AM GOLD SALIM
+            </h2>
+            
+            <p className="text-[14px] lg:text-[15px] font-bold uppercase tracking-tight leading-[1.5] mt-4">
+              FROM LAGOS TO THE WORLD, GOLD SALIM OPEYEMI IS A FRONTEND DEVELOPER KNOWN FOR BUILDING RESPONSIVE, HIGH-PERFORMANCE WEB APPLICATIONS.
+            </p>
+            
+            <p className="text-[14px] lg:text-[15px] font-bold uppercase tracking-tight leading-[1.5]">
+              A RESULTS-DRIVEN FRONTEND DEVELOPER WITH 3+ YEARS OF EXPERIENCE BUILDING RESPONSIVE, HIGH-PERFORMANCE WEB APPLICATIONS USING HTML5, CSS3, JAVASCRIPT, TYPESCRIPT, REACT.JS, NEXT.JS, TAILWIND CSS, AND REACT NATIVE. PASSIONATE ABOUT WRITING CLEAN, MAINTAINABLE CODE AND SOLVING COMPLEX PROBLEMS.
+            </p>
 
-      {/* Hand-drawn Signature SVG */}
-      <div className="mt-4 opacity-100">
-        <svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 20 50 C 30 20, 60 10, 80 30 C 100 50, 60 70, 40 50 C 20 30, 100 25, 130 40 C 160 55, 180 35, 190 30" 
-                stroke="#141b9c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-          <path d="M 120 40 L 140 25" stroke="#141b9c" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-          <circle cx="175" cy="45" r="2" fill="#141b9c" />
-        </svg>
-      </div>
-    </div>
+            {/* Hand-drawn Signature SVG */}
+            <div className="mt-4 opacity-100">
+              <svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 20 50 C 30 20, 60 10, 80 30 C 100 50, 60 70, 40 50 C 20 30, 100 25, 130 40 C 160 55, 180 35, 190 30" 
+                      stroke="#141b9c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <path d="M 120 40 L 140 25" stroke="#141b9c" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                <circle cx="175" cy="45" r="2" fill="#141b9c" />
+              </svg>
+            </div>
+          </div>
 
-    {/* Right Side: Image with Badge and Buttons */}
-    <div className="md:col-span-7 relative w-full pt-12 md:pt-0">
-      
-      {/* Spinning Circular Badge - Overlapping the top left corner */}
-      <div className="absolute -top-12 -left-8 md:-top-16 md:-left-12 lg:-top-24 lg:-left-20 w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] z-40 flex items-center justify-center">
-        {/* Blurred glassmorphism backing */}
-        <div className="absolute inset-4 rounded-full backdrop-blur-xl bg-[#f5f4ef]/30 z-0"></div>
-        
-        <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible z-10 animate-[spin_12s_linear_infinite]">
-          <path id="circlePath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" fill="none" />
-          <text className="text-[11px] font-black fill-[#141b9c] tracking-[0.16em] uppercase">
-            <textPath href="#circlePath" startOffset="0%">
-              FRONTEND DEVELOPER • FRONTEND DEVELOPER •
-            </textPath>
-          </text>
-        </svg>
-      </div>
+          {/* Right Side: Image with Badge and Buttons */}
+          <div className="md:col-span-7 relative w-full pt-12 md:pt-0">
+            
+            {/* Spinning Circular Badge - Overlapping the top left corner */}
+            <div className="absolute -top-12 -left-8 md:-top-16 md:-left-12 lg:-top-24 lg:-left-20 w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[240px] lg:h-[240px] z-40 flex items-center justify-center">
+              {/* Blurred glassmorphism backing */}
+              <div className="absolute inset-4 rounded-full backdrop-blur-xl bg-[#f5f4ef]/30 z-0"></div>
+              
+              <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible z-10 animate-[spin_12s_linear_infinite]">
+                <path id="circlePath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" fill="none" />
+                <text className="text-[11px] font-black fill-[#141b9c] tracking-[0.16em] uppercase">
+                  <textPath href="#circlePath" startOffset="0%">
+                    FRONTEND DEVELOPER • FRONTEND DEVELOPER •
+                  </textPath>
+                </text>
+              </svg>
+            </div>
 
-      {/* Main Portfolio Image */}
-      <div className="relative w-full aspect-[4/3.5] rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden bg-gray-200 shadow-lg">
-        <img 
-          src="/salim.jpeg" 
-          alt="Gold Salim working on designs" 
-          className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
-        />
-      </div>
+            {/* Main Portfolio Image */}
+            <div className="relative w-full aspect-[4/3.5] rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden bg-gray-200 shadow-lg">
+              <img 
+                src="/salim.jpeg" 
+                alt="Gold Salim working on designs" 
+                className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+              />
+            </div>
 
-    </div>
-  </div>
-</section>
+          </div>
+        </div>
+      </section>
+
       {/* =========================================
           WORK SECTION
       ========================================= */}
       <section className="relative w-full bg-[#f5f4ef] py-16 md:py-24 lg:py-32 px-4 md:px-8 lg:px-12 flex justify-center items-center overflow-hidden">
-  <div className="flex items-start justify-center select-none text-[#1821c9]">
-    <h2 
-      className="text-[25vw] md:text-[27vw] font-bold uppercase leading-none m-0 p-0 tracking-normal"
-      style={{ 
-        fontFamily: 'Impact, sans-serif',
-        transform: 'scaleY(1.3)',
-        transformOrigin: 'center'
-      }}
-    >
-      WORK
-    </h2>
-    <span 
-      className="text-[5vw] md:text-[5.5vw] font-bold uppercase leading-none ml-[0.3vw] mt-[0.5vw]"
-      style={{ 
-        fontFamily: 'Impact, sans-serif',
-        transform: 'scaleY(1.25)',
-        transformOrigin: 'top left'
-      }}
-    >
-      (05)
-    </span>
-  </div>
-</section>
+        <div className="flex items-start justify-center select-none text-[#1821c9]">
+          <h2 
+            className="text-[25vw] md:text-[27vw] font-bold uppercase leading-none m-0 p-0 tracking-normal"
+            style={{ 
+              fontFamily: 'Impact, sans-serif',
+              transform: 'scaleY(1.3)',
+              transformOrigin: 'center'
+            }}
+          >
+            WORK
+          </h2>
+          <span 
+            className="text-[5vw] md:text-[5.5vw] font-bold uppercase leading-none ml-[0.3vw] mt-[0.5vw]"
+            style={{ 
+              fontFamily: 'Impact, sans-serif',
+              transform: 'scaleY(1.25)',
+              transformOrigin: 'top left'
+            }}
+          >
+            (05)
+          </span>
+        </div>
+      </section>
+
       {/* =========================================
           PROJECT GRID SECTION
       ========================================= */}
