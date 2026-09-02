@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 // =========================================
@@ -41,25 +41,14 @@ const lineVariants = {
   },
 };
 
-// REMOVED pageVariants - causing errors
-
 // Add interface for nav items
 interface NavItem {
   name: string;
   path: string;
 }
 
-// Add interface for slot positions
-interface SlotPosition {
-  y: string;
-  scale: number;
-  rotate: number;
-  zIndex: number;
-}
-
 export default function AboutPage() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [step, setStep] = useState<number>(0);
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const router = useRouter();
 
@@ -75,29 +64,6 @@ export default function AboutPage() {
     [0, 0.5, 1],
     ["30%", "0%", "30%"]
   );
-
-  // =========================================
-  // CAROUSEL LOOP EFFECT (Every 2.5 seconds)
-  // =========================================
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStep((prev) => (prev + 1) % 3);
-    }, 2500); 
-    return () => clearInterval(interval);
-  }, []);
-
-  // Tighter vertical positions so it doesn't move beyond the text height
-  const slots: SlotPosition[] = [
-    { y: "-35%", scale: 0.75, rotate: 8, zIndex: 10 },  // Slot 0: Top / Back
-    { y: "0%", scale: 0.85, rotate: -4, zIndex: 20 },   // Slot 1: Middle
-    { y: "35%", scale: 0.95, rotate: 6, zIndex: 30 },   // Slot 2: Bottom / Front
-  ];
-
-  // Cinematic easing for the slide-and-snap motion
-  const carouselTransition = { 
-    duration: 1, 
-    ease: [0.77, 0, 0.175, 1] as const
-  };
 
   // Navigation items configuration
   const navItems: NavItem[] = [
@@ -121,7 +87,6 @@ export default function AboutPage() {
   };
 
   return (
-    // REMOVED AnimatePresence and motion.main - using regular div instead
     <div className="w-full bg-[#EBEAE5] text-[#121ABC] overflow-x-hidden font-sans">
       
       {/* =========================================
@@ -258,35 +223,11 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* =========================================
-            VERTICAL 3D CAROUSEL (LOOPING SLOTS)
-        ========================================= */}
+        {/* Simple Static Images - REMOVED ALL CAROUSEL ANIMATIONS */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 aspect-[3/4] w-[15vw] min-w-[170px] pointer-events-none">
-          
-          <motion.div 
-            animate={slots[(0 + step) % 3]}
-            transition={carouselTransition}
-            className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gray-300 border-[4px] border-[#F0EEE6]"
-          >
+          <div className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gray-300 border-[4px] border-[#F0EEE6]">
             <Image src="/handlap.avif" alt="Portrait" fill className="object-cover grayscale" priority />
-          </motion.div>
-
-          <motion.div 
-            animate={slots[(1 + step) % 3]}
-            transition={carouselTransition}
-            className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gray-400 border-[4px] border-[#F0EEE6]"
-          >
-            <Image src="/handwrite.avif" alt="Working" fill className="object-cover grayscale" priority />
-          </motion.div>
-
-          <motion.div 
-            animate={slots[(2 + step) % 3]}
-            transition={carouselTransition}
-            className="absolute inset-0 w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gray-500 border-[4px] border-[#F0EEE6]"
-          >
-            <Image src="/handjaw.avif" alt="Close Up" fill className="object-cover grayscale" priority />
-          </motion.div>
-
+          </div>
         </div>
       </section>
 
